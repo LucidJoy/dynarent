@@ -7,6 +7,7 @@ import Link from "next/link";
 
 import { Button } from ".";
 import { DivvyContext } from "../context/DivvyContext";
+import NFTRentContext from "../context/NftRentContext";
 
 import images from "../assets";
 
@@ -24,6 +25,7 @@ const ButtonGroup = ({ setActive, router, setIsOpen, isMobile }) => {
 
 const Navbar = () => {
   const { currentAccount } = useContext(DivvyContext);
+  const { selectedBtn, setSelectedBtn } = useContext(NFTRentContext);
   let admin = true;
 
   return (
@@ -40,41 +42,35 @@ const Navbar = () => {
           />
         </Link>
       </div>
-      <div className='ml-4'>
-        {currentAccount && admin ? (
-          <>
-            <Button
-              btnName='Admin'
-              classStyles='mx-2 rounded-xl'
-              moveTo='/admin'
-            />
-            <Button
-              btnName='Invest'
-              classStyles='mx-2 rounded-xl'
-              moveTo='/investment'
-            />
-            <Button
-              btnName='Loan'
-              classStyles='mx-2 rounded-xl'
-              moveTo='/loandashboard'
-            />
-          </>
-        ) : currentAccount ? (
-          <>
-            <Button
-              btnName='Invest'
-              classStyles='mx-2 rounded-xl'
-              moveTo='/investment'
-            />
-            <Button
-              btnName='Loan'
-              classStyles='mx-2 rounded-xl'
-              moveTo='/loandashboard'
-            />
-          </>
-        ) : (
-          <ButtonGroup />
-        )}
+      <div className='ml-4 flex flex-row gap-[15px]'>
+        <button
+          className={`font-poppins text-[15px] transition-all duration-150 ease-in-out hover:scale-[1.05] ${
+            selectedBtn === "marketplace" && "focus:text-[#eb7d42]"
+          }`}
+          onClick={() => setSelectedBtn("marketplace")}
+        >
+          <p>Marketplace</p>
+        </button>
+
+        <button
+          className={`font-poppins text-[15px] transition-all duration-150 ease-in-out hover:scale-[1.05] ${
+            selectedBtn === "mynfts" && "focus:text-[#eb7d42]"
+          }`}
+          onClick={() => setSelectedBtn("mynfts")}
+        >
+          <p>My NFTs</p>
+        </button>
+
+        <button
+          className={`font-poppins text-[15px] transition-all duration-150 ease-in-out hover:scale-[1.05] ${
+            selectedBtn === "rentednfts" && "focus:text-[#eb7d42]"
+          }`}
+          onClick={() => setSelectedBtn("rentednfts")}
+        >
+          <p>Rented NFTs</p>
+        </button>
+
+        <ButtonGroup />
       </div>
       {/* </div> */}
     </nav>
