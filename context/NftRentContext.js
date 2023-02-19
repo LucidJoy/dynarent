@@ -27,7 +27,18 @@ export const NFTRentProvider = ({ children }) => {
   const [myNfts, setMyNfts] = useState([]);
   const [selectedBtn, setSelectedBtn] = useState("");
 
-  let myAllNfts;
+  const [image, setImage] = useState("");
+  const [apiResult, setApiResult] = useState("");
+
+  const [nftHash, setNftHash] = useState("");
+  const [nftAddress, setNftAddress] = useState("");
+  const [nftId, setNftId] = useState("");
+  const [nftName, setNftName] = useState("");
+  const [tokenUri, setTokenUri] = useState("");
+  const [nftPrice, setNftPrice] = useState("");
+  const [nftDuration, setNftDuration] = useState("");
+  const [nftChainName, setNftChainName] = useState("");
+  const [nftDescription, setNftDescription] = useState("");
 
   const fetchNfts = async (address) => {
     try {
@@ -70,6 +81,7 @@ export const NFTRentProvider = ({ children }) => {
     }
 
     console.log(allNFTs);
+    setMyNfts(allNFTs);
     return allNFTs;
   };
 
@@ -115,11 +127,10 @@ export const NFTRentProvider = ({ children }) => {
     _nftAddress,
     _nftId,
     _nftName,
-    _nftSymbol,
     _tokenUri,
-    _nftMetadata,
     _price,
-    _duration
+    _duration,
+    _nftChainName
   ) => {
     if (window.ethereum) {
       const web3Modal = new Web3Modal();
@@ -134,11 +145,10 @@ export const NFTRentProvider = ({ children }) => {
         _nftAddress,
         _nftId,
         _nftName,
-        _nftSymbol,
         _tokenUri,
-        _nftMetadata,
         _price,
         _duration,
+        _nftChainName,
         {
           gasLimit: 5000000,
         }
@@ -206,6 +216,7 @@ export const NFTRentProvider = ({ children }) => {
       const txRes = await contract.getMarketplaceNfts();
 
       console.log(txRes);
+      setMarketplaceNfts(txRes);
 
       return txRes;
     }
@@ -292,6 +303,35 @@ export const NFTRentProvider = ({ children }) => {
         currentAccount,
         selectedBtn,
         setSelectedBtn,
+        fetchNfts,
+        marketplaceNfts,
+        myNfts,
+        setApiResult,
+        apiResult,
+        setImage,
+        image,
+        getMarketplaceNfts,
+        getMyRentedNfts,
+        getNftDetailsByHash,
+        setNftHash,
+        setNftAddress,
+        setNftId,
+        setNftName,
+        setTokenUri,
+        setNftPrice,
+        setNftDuration,
+        setNftChainName,
+        nftHash,
+        nftAddress,
+        nftId,
+        nftName,
+        tokenUri,
+        nftPrice,
+        nftDuration,
+        nftChainName,
+        setNftDescription,
+        nftDescription,
+        listToMarketplace,
       }}
     >
       {children}

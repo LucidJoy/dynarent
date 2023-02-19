@@ -5,7 +5,7 @@ import nft1 from "../assets/nft1.png";
 import NFTRentContext from "../context/NftRentContext";
 
 const FormModal = () => {
-  const { toggleModal, cardId } = useContext(NFTRentContext);
+  const { toggleModal, listToMarketplace, cardId, nftHash, nftAddress, nftDescription,nftId,nftName,tokenUri,nftPrice, nftDuration, nftChainName   } = useContext(NFTRentContext);
 
   return (
     <div>
@@ -20,13 +20,16 @@ const FormModal = () => {
             />
 
             <div className='flex flex-col font-poppins justify-between py-[5px]'>
-              <p className='text-nft-gray-1 text-[16px] font-medium'>Name: </p>
+              <p className='text-nft-gray-1 text-[16px] font-medium'>Name: {nftName}</p>
               <p className='text-nft-gray-1 text-[16px] font-medium'>
-                Description: {cardId}
+                Description: {nftDescription}
               </p>
               <p className='text-nft-gray-1 text-[16px] font-medium'>Damage:</p>
               <p className='text-nft-gray-1 text-[16px] font-medium'>
                 Durability:
+              </p>
+              <p className='text-nft-gray-1 text-[16px] font-medium'>
+                Chain: {nftChainName}
               </p>
             </div>
           </div>
@@ -176,7 +179,11 @@ const FormModal = () => {
           <div className='flex items-center justify-center'>
             <button
               className='mt-[10px] min-w-[100px] nft-gradient text-sm minlg:text-lg px-6 py-2 minlg:px-8 font-poppins font-semibold text-nft-black-1 transition ease-in-out duration-300 hover:scale-105 rounded-[10px]'
-              onClick={() => toggleModal()}
+              onClick={async () => {
+                toggleModal();
+                const res = await listToMarketplace(nftHash, nftAddress, nftId, nftName, tokenUri, "10", "2", nftChainName);
+                console.log(res);
+              }}
             >
               List
             </button>

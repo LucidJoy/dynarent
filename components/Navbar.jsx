@@ -16,16 +16,26 @@ const ButtonGroup = ({ setActive, router, setIsOpen, isMobile }) => {
 
   return (
     <Button
-      btnName='Connect'
-      classStyles='mx-2 rounded-xl'
+      btnName="Connect"
+      classStyles="mx-2 rounded-xl"
       handleClick={connectWallet}
     />
   );
 };
 
 const Navbar = () => {
-  const { currentAccount } = useContext(DivvyContext);
-  const { selectedBtn, setSelectedBtn } = useContext(NFTRentContext);
+  // const { currentAccount } = useContext(DivvyContext);
+  const {
+    selectedBtn,
+    setSelectedBtn,
+    fetchNfts,
+    getNftDetailsByHash,
+    getMarketplaceNfts,
+    getMyRentedNfts,
+    currentAccount,
+    myNfts,
+    marketplaceNfts,
+  } = useContext(NFTRentContext);
   let admin = true;
   const router = useRouter();
   const param = router.pathname;
@@ -37,26 +47,28 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className='flex items-center justify-around w-screen fixed z-10 p-4 flex-row border-b dark:bg-nft-dark bg-white dark:border-nft-black-1 border-nft-gray-1'>
+    <nav className="flex items-center justify-around w-screen fixed z-10 p-4 flex-row border-b dark:bg-nft-dark bg-white dark:border-nft-black-1 border-nft-gray-1">
       {/* <div className="md:hidden flex justify-around"> */}
-      <div className='rounded-md white-glassmorphism pt-3 pl-3 pr-3 pb-[0.35rem] hover:cursor-pointer'>
-        <Link href='/'>
+      <div className="rounded-md white-glassmorphism pt-3 pl-3 pr-3 pb-[0.35rem] hover:cursor-pointer">
+        <Link href="/">
           <Image
             src={images.divvyLogo}
-            objectFit='contain'
+            objectFit="contain"
             width={32}
             height={32}
-            alt='logo'
+            alt="logo"
           />
         </Link>
       </div>
-      <div className='ml-4 flex flex-row gap-[15px]'>
+      <div className="ml-4 flex flex-row gap-[15px]">
         <button
           className={`font-poppins text-[15px] transition-all duration-150 ease-in-out hover:scale-[1.05] ${
             selectedBtn === "marketplace" && "focus:text-[#eb7d42]"
           }`}
-          onClick={() => {
+          onClick={async () => {
             setSelectedBtn("marketplace");
+            let result = await getMarketplaceNfts();
+            console.log("Marketplace: ", result);
             router.push("/marketplace");
           }}
         >
@@ -67,8 +79,11 @@ const Navbar = () => {
           className={`font-poppins text-[15px] transition-all duration-150 ease-in-out hover:scale-[1.05] ${
             selectedBtn === "mynfts" && "focus:text-[#eb7d42]"
           }`}
-          onClick={() => {
+          onClick={async () => {
             setSelectedBtn("mynfts");
+            const data = await fetchNfts(currentAccount);
+            console.log("Data: ", data);
+            console.log("NFTs: ", myNfts);
             router.push("/mynfts");
           }}
         >
@@ -79,8 +94,15 @@ const Navbar = () => {
           className={`font-poppins text-[15px] transition-all duration-150 ease-in-out hover:scale-[1.05] ${
             selectedBtn === "rentednfts" && "focus:text-[#eb7d42]"
           }`}
-          onClick={() => {
+          onClick={async () => {
             setSelectedBtn("rentednfts");
+            let result = await getMyRentedNfts(currentAccount);
+            console.log("Rented: ",result);
+            let res;
+            result.map(async (hash) => {
+              res = await getNftDetailsByHash(hash);
+            });
+            console.log("Single Rented: ",res);
             router.push("/rentednfts");
           }}
         >
