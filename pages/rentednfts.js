@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Card } from "../components";
+import NFTRentContext from "../context/NftRentContext";
 
 const rentednfts = () => {
+  const { modal, cardId, setCardId, currentAccount, rentedNfts } =
+    useContext(NFTRentContext);
+
   let arr = [1, 2, 3, 4, 5];
 
   return (
-    <div className='flex flex-row flex-wrap w-full'>
-      {arr.map((oneCard, index) => (
-        <Card handleSetState={() => setCardId(index)} />
-      ))}
+    <div className="flex flex-row flex-wrap w-full">
+      {rentedNfts.map((nft, index) => {
+        return (
+          <Card
+            handleSetState={() => {
+              setCardId(index);
+            }}
+            nftData={nft}
+          />
+        );
+      })}
     </div>
   );
 };

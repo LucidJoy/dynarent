@@ -12,7 +12,7 @@ const NFTRentContext = createContext({});
 import ContractJson from "./NFTRent.json";
 
 const abi = ContractJson.abi;
-const CONTRACT_ADDRESS = "0x0cFb71850fB1d2f5fB778F9f4AAF2F70FA8d05aC";
+const CONTRACT_ADDRESS = "0x7Fb1b9B41ac3B77732187E538Ab6d837b1DfC901";
 const MORALIS_API_KEY =
   "ea7RIctgYCrticyh409mE0xSQi8nby1hsbLkL4zfopadb6ett7i6mPTDfAeHRSRD";
 
@@ -39,6 +39,8 @@ export const NFTRentProvider = ({ children }) => {
   const [nftDuration, setNftDuration] = useState("");
   const [nftChainName, setNftChainName] = useState("");
   const [nftDescription, setNftDescription] = useState("");
+
+  const [rentedNfts, setRentedNfts] = useState([]);
 
   const fetchNfts = async (address) => {
     try {
@@ -251,6 +253,7 @@ export const NFTRentProvider = ({ children }) => {
       const txRes = await contract.getNftDetailsByHash(_nftHash);
 
       console.log(txRes);
+      
 
       return txRes;
     }
@@ -332,6 +335,9 @@ export const NFTRentProvider = ({ children }) => {
         setNftDescription,
         nftDescription,
         listToMarketplace,
+        rent,
+        setRentedNfts,
+        rentedNfts
       }}
     >
       {children}

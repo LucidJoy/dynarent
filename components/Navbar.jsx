@@ -35,6 +35,8 @@ const Navbar = () => {
     currentAccount,
     myNfts,
     marketplaceNfts,
+    setRentedNfts,
+    rentedNfts
   } = useContext(NFTRentContext);
   let admin = true;
   const router = useRouter();
@@ -84,6 +86,7 @@ const Navbar = () => {
             const data = await fetchNfts(currentAccount);
             console.log("Data: ", data);
             console.log("NFTs: ", myNfts);
+            console.log("Rent: ", rentedNfts);
             router.push("/mynfts");
           }}
         >
@@ -96,14 +99,33 @@ const Navbar = () => {
           }`}
           onClick={async () => {
             setSelectedBtn("rentednfts");
+
             let result = await getMyRentedNfts(currentAccount);
-            console.log("Rented: ",result);
+            console.log("Rented: ", result);
             let res;
-            result.map(async (hash) => {
+            let arrList = [];
+            let name;
+
+            result.map(async (hash, index) => {
+              console.log(hash);
               res = await getNftDetailsByHash(hash);
+              console.log(res.nftName);
+              name = {
+                nftName: res.nftName,
+                chainName: res.chainName,
+                price: Number(res.price),
+                duration: Number(res.duration)
+              }
+
+              arrList.push(name);
+              // console.log("Hi ", response);
+              // res.push(response);
             });
-            console.log("Single Rented: ",res);
+
+            setRentedNfts(arrList);
+            console.log("Single Rented: ", arrList);
             router.push("/rentednfts");
+            res = []
           }}
         >
           <p>Rented NFTs</p>

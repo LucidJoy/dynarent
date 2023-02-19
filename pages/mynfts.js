@@ -20,7 +20,7 @@ const allNfts = () => {
         </div>
       )}
       <div className='flex flex-row flex-wrap w-full'>
-        {myNfts.map((nft, index) => (
+        {myNfts?.map((nft, index) => (
           <Card handleSetState={() => {
             setCardId(index)}} nftData = {nft}/>    
         ))}
