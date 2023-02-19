@@ -15,3 +15,5 @@ YOU CAN FIND THE SUPERFLUID AND PUSH INTEGRATION CODE AND LOGIC IN : https://git
 DYNARENT DOCUMENTATION : https://drive.google.com/file/d/1AcjYOcKky0RPv9zmH9VHju5cxNmjSaZw/view?usp=sharing
 
 DYNARENT API DOCUMENTATION : https://www.notion.so/Dynarent-API-Documentation-791757b322b34869b78ae1709d5d78ad?pvs=4 
+
+API TESTING DEPLOYED APPLICATION : https://nft-gated-arunava-barua.vercel.app/
