@@ -25,6 +25,7 @@ export const NFTRentProvider = ({ children }) => {
   const [myRentedNfts, setMyRentedNfts] = useState([]);
   const [marketplaceNfts, setMarketplaceNfts] = useState([]);
   const [myNfts, setMyNfts] = useState([]);
+  const [selectedBtn, setSelectedBtn] = useState("");
 
   let myAllNfts;
 
@@ -288,7 +289,9 @@ export const NFTRentProvider = ({ children }) => {
         setModal,
         cardId,
         setCardId,
-        currentAccount
+        currentAccount,
+        selectedBtn,
+        setSelectedBtn,
       }}
     >
       {children}
