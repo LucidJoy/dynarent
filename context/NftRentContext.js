@@ -5,6 +5,7 @@ const NFTRentContext = createContext({});
 export const NFTRentProvider = ({ children }) => {
   const [modal, setModal] = useState(false);
   const [cardId, setCardId] = useState(1);
+  const [selectedBtn, setSelectedBtn] = useState("");
 
   const toggleModal = () => setModal(!modal);
 
@@ -16,6 +17,8 @@ export const NFTRentProvider = ({ children }) => {
         setModal,
         cardId,
         setCardId,
+        selectedBtn,
+        setSelectedBtn,
       }}
     >
       {children}
