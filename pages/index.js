@@ -20,16 +20,6 @@ export default function Home() {
             <p className='text-7xl text-font font-bold'>DynaRent,</p> <br /> The
             next NFT renting application
           </h1>
-          <p className='text-lg opacity-60 mb-10 text-gradient'>
-            Borrowing loan made secured and easier than never before
-          </p>
-          <div>
-            <Button
-              btnName='Try Loan'
-              classStyles='mx-2 rounded-xl'
-              moveTo='terms'
-            />
-          </div>
         </div>
 
         <div className='p-3 items-center self-center flex-col rounded-xl h-40 max-w-xs sm:w-72 w-full my-5 eth-card white-glassmorphism border-none flex-1'>
