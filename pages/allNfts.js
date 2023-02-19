@@ -6,7 +6,7 @@ import { FormModal, Card } from "../components";
 import NFTRentContext from "../context/NftRentContext";
 
 const allNfts = () => {
-  const { modal, cardId, setCardId } = useContext(NFTRentContext);
+  const { modal, cardId, setCardId, currentAccount } = useContext(NFTRentContext);
   let arr = [1, 2, 3, 4, 5];
 
   const cardClick = (index) => setCardId(index);
@@ -21,7 +21,7 @@ const allNfts = () => {
       )}
       <div className='flex flex-row flex-wrap w-full'>
         {arr.map((oneCard, index) => (
-          <Card handleSetState={() => setCardId(index)} />
+          <Card handleSetState={() => setCardId(index)} />    
         ))}
       </div>
     </>
