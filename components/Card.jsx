@@ -1,11 +1,16 @@
 import React, { useContext } from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 import nft1 from "../assets/nft1.png";
 import NFTRentContext from "../context/NftRentContext";
 
 const Card = ({ handleSetState }) => {
-  const { toggleModal } = useContext(NFTRentContext);
+  const { toggleModal, selectedBtn, setSelectedBtn } =
+    useContext(NFTRentContext);
+
+  const router = useRouter();
+  const path = router.pathname;
 
   const handleModal = () => {
     handleSetState();
@@ -23,14 +28,25 @@ const Card = ({ handleSetState }) => {
           <p>Description: </p>
           <p>Damage: </p>
           <p>Durability: </p>
-          <div className='card-actions justify-center w-full mt-[10px]'>
-            <button
-              className='btn w-full hover:border hover:border-[#EC7F44] transition-all duration-150 ease-in-out'
-              onClick={() => handleModal()}
-            >
-              List
-            </button>
-          </div>
+          {path !== "/rentednfts" && (
+            <div className='card-actions justify-center w-full mt-[10px]'>
+              {path === "/mynfts" ? (
+                <button
+                  className='btn w-full hover:border hover:border-[#EC7F44] transition-all duration-150 ease-in-out'
+                  onClick={() => handleModal()}
+                >
+                  List
+                </button>
+              ) : (
+                <button
+                  className='btn w-full hover:border hover:border-[#EC7F44] transition-all duration-150 ease-in-out'
+                  onClick={() => handleModal()}
+                >
+                  Rent
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>

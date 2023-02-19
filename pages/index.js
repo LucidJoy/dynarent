@@ -17,8 +17,8 @@ export default function Home() {
       <div className='flex justify-between nav-h w-full z-10 p-4 pl-5 pr-20 flex-row border-b bg-nft-dark border-nft-black-1 h-[49.2rem]'>
         <div className='flex flex-col w-1/2 flex-2 items-start pl-10 justify-center gap-31'>
           <h1 className='text-4xl font-semibold mb-7'>
-            <p className='text-8xl text-font font-bold'>Divvy,</p> <br /> The
-            next generation bank
+            <p className='text-7xl text-font font-bold'>DynaRent,</p> <br /> The
+            next NFT renting application
           </h1>
           <p className='text-lg opacity-60 mb-10 text-gradient'>
             Borrowing loan made secured and easier than never before
