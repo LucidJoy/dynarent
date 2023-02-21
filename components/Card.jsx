@@ -8,13 +8,12 @@ import nft1 from "../assets/nft1.png";
 import NFTRentContext from "../context/NftRentContext";
 
 const Card = ({ handleSetState, nftData }) => {
+  const [apiResult, setApiResult] = useState([])
   const {
     toggleModal,
     setNftDescription,
     image,
     setImage,
-    apiResult,
-    setApiResult,
     setNftHash,
     setNftAddress,
     setNftId,
@@ -24,7 +23,7 @@ const Card = ({ handleSetState, nftData }) => {
     setNftDuration,
     setNftChainName,
     currentAccount,
-    rent
+    rent,
   } = useContext(NFTRentContext);
 
   const router = useRouter();
@@ -38,10 +37,15 @@ const Card = ({ handleSetState, nftData }) => {
   useEffect(() => {
     const func = async () => {
       console.log(nftData?.tokenUri);
-      const result = await axios(`https://the-tommorow-times.revise.link/1`);
-      setApiResult(result);
-      console.log(result);
-      setImage(result.data.image);
+
+      try {
+        const result = await axios(`${nftData?.tokenUri}`);
+        setApiResult(result);
+        console.log(result);
+        setImage(result.data.image);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     func();
@@ -80,7 +84,7 @@ const Card = ({ handleSetState, nftData }) => {
                 <button
                   className="btn w-full hover:border hover:border-[#EC7F44] transition-all duration-150 ease-in-out"
                   onClick={async () => {
-                    handleModal()
+                    handleModal();
                     const res = await rent(nftData.nftHash, currentAccount);
                     console.log(res);
                   }}

@@ -5,8 +5,8 @@ import nft1 from "../assets/nft1.png";
 import { FormModal, Card } from "../components";
 import NFTRentContext from "../context/NftRentContext";
 
-const allNfts = () => {
-  const { modal, cardId, setCardId, currentAccount, myNfts } = useContext(NFTRentContext);
+const AllNfts = () => {
+  const { modal, cardId, setCardId, myNfts } = useContext(NFTRentContext);
   let arr = [1, 2, 3, 4, 5];
 
   const cardClick = (index) => setCardId(index);
@@ -22,11 +22,11 @@ const allNfts = () => {
       <div className='flex flex-row flex-wrap w-full'>
         {myNfts?.map((nft, index) => (
           <Card handleSetState={() => {
-            setCardId(index)}} nftData = {nft}/>    
+            setCardId(index)}} nftData = {nft} key={index}/>    
         ))}
       </div>
     </>
   );
 };
 
-export default allNfts;
+export default AllNfts;

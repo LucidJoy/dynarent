@@ -30,7 +30,7 @@ const Team = () => {
               Arunava Barua
             </p>
             <p className="text-xl text-gray-500 dark:text-gray-200 font-light">
-              Smart Contract Developer
+              Web3 Full-stack Developer
             </p>
           </div>
           <div className="pt-8 flex border-t border-gray-200 w-44 mx-auto text-gray-500 items-center justify-between">
@@ -145,10 +145,10 @@ const Team = () => {
           </div>
           <div className="text-center">
             <p className="text-2xl text-gray-800 dark:text-white">
-              Ashwin Raj Sharmah
+              Dhruv Rashiya
             </p>
             <p className="text-xl text-gray-500 dark:text-gray-200 font-light">
-              Finance 
+              Full-Stack Developer 
             </p>
           </div>
           <div className="pt-8 flex border-t border-gray-200 w-44 mx-auto text-gray-500 items-center justify-between">

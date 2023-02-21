@@ -3,9 +3,8 @@ import React, { useContext } from "react";
 import { Card } from "../components";
 import NFTRentContext from "../context/NftRentContext";
 
-const rentednfts = () => {
-  const { modal, cardId, setCardId, currentAccount, rentedNfts } =
-    useContext(NFTRentContext);
+const Rentednfts = () => {
+  const {setCardId,rentedNfts } = useContext(NFTRentContext);
 
   let arr = [1, 2, 3, 4, 5];
 
@@ -18,6 +17,7 @@ const rentednfts = () => {
               setCardId(index);
             }}
             nftData={nft}
+            key={index}
           />
         );
       })}
@@ -25,4 +25,4 @@ const rentednfts = () => {
   );
 };
 
-export default rentednfts;
+export default Rentednfts;

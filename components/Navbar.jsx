@@ -114,7 +114,8 @@ const Navbar = () => {
                 nftName: res.nftName,
                 chainName: res.chainName,
                 price: Number(res.price),
-                duration: Number(res.duration)
+                duration: Number(res.duration),
+                tokenUri: res.tokenUri
               }
 
               arrList.push(name);
